@@ -175,6 +175,7 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
     self.selectionIndicatorBoxLayer = [CALayer layer];
     self.selectionIndicatorBoxLayer.opacity = self.selectionIndicatorBoxOpacity;
     self.selectionIndicatorBoxLayer.borderWidth = 1.0f;
+    
     self.selectionIndicatorBoxLayer.cornerRadius = 15.0f;
     self.selectionIndicatorBoxOpacity = 0.2;
     
@@ -364,7 +365,7 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
             }
             titleLayer.string = [self attributedTitleAtIndex:idx];
             titleLayer.contentsScale = [[UIScreen mainScreen] scale];
-            
+            titleLayer.cornerRadius = 15.0f;
             [self.scrollView.layer addSublayer:titleLayer];
             
             // Vertical Divider
@@ -614,6 +615,7 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
                 
                 if (self.selectionStyle == HMSegmentedControlSelectionStyleBox && !self.selectionIndicatorBoxLayer.superlayer) {
                     self.selectionIndicatorBoxLayer.frame = [self frameForFillerSelectionIndicator];
+                    self.selectionIndicatorBoxLayer.cornerRadius = 15.0f;
                     [self.scrollView.layer insertSublayer:self.selectionIndicatorBoxLayer atIndex:0];
                 }
             }
@@ -1014,6 +1016,7 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
                     [self.scrollView.layer addSublayer:self.selectionIndicatorStripLayer];
                     
                     if (self.selectionStyle == HMSegmentedControlSelectionStyleBox && [self.selectionIndicatorBoxLayer superlayer] == nil)
+                        self.selectionIndicatorBoxLayer.cornerRadius = 15.0f;
                         [self.scrollView.layer insertSublayer:self.selectionIndicatorBoxLayer atIndex:0];
                     
                     [self setSelectedSegmentIndex:index animated:NO notify:YES];
