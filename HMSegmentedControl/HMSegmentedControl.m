@@ -72,7 +72,6 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
         [super touchesEnded:touches withEvent:event];
     }
 }
-
 @end
 
 @implementation HMSegmentedControl
@@ -177,11 +176,12 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
     self.selectionIndicatorBoxLayer.borderWidth = 1.0f;
     
     CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners: UIRectCornerAllCorners cornerRadii:(CGSize){15.0, 15.0}].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;
     maskLayer.masksToBounds = true;
-    self.selectionIndicatorBoxLayer.mask = maskLayer;
-    self.selectionIndicatorBoxLayer.masksToBounds = true;
+        self.selectionIndicatorBoxLayer.masksToBounds = true;
+    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners: UIRectCornerAllCorners cornerRadii:(CGSize){15.0, 15.0}].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;
     
+    self.selectionIndicatorBoxLayer.mask = maskLayer;
+    [self.selectionIndicatorBoxLayer setNeedsLayout];
     self.selectionIndicatorBoxOpacity = 0.2;
     
     self.contentMode = UIViewContentModeRedraw;
@@ -622,7 +622,15 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
                 if (self.selectionStyle == HMSegmentedControlSelectionStyleBox && !self.selectionIndicatorBoxLayer.superlayer) {
                     self.selectionIndicatorBoxLayer.frame = [self frameForFillerSelectionIndicator];
                     
+                    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+                    maskLayer.masksToBounds = true;
+                        self.selectionIndicatorBoxLayer.masksToBounds = true;
+                    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners: UIRectCornerAllCorners cornerRadii:(CGSize){15.0, 15.0}].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;
+                    
+                    self.selectionIndicatorBoxLayer.mask = maskLayer;
+                    [self.selectionIndicatorBoxLayer setNeedsLayout];
                     [self.scrollView.layer insertSublayer:self.selectionIndicatorBoxLayer atIndex:0];
+                    [self.selectionIndicatorBoxLayer setNeedsLayout];
                 }
             }
         }
@@ -1023,8 +1031,10 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
                     
                     if (self.selectionStyle == HMSegmentedControlSelectionStyleBox && [self.selectionIndicatorBoxLayer superlayer] == nil)
                     
+                        
+                        
                         [self.scrollView.layer insertSublayer:self.selectionIndicatorBoxLayer atIndex:0];
-                    
+                        [self.selectionIndicatorBoxLayer setNeedsLayout];
                     [self setSelectedSegmentIndex:index animated:NO notify:YES];
                     return;
                 }
