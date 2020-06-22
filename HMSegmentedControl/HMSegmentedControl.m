@@ -176,7 +176,8 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
     self.selectionIndicatorBoxLayer.opacity = self.selectionIndicatorBoxOpacity;
     self.selectionIndicatorBoxLayer.borderWidth = 1.0f;
     
-    self.selectionIndicatorBoxLayer.cornerRadius = 15.0f;
+    self.selectionIndicatorBoxLayer.cornerRadius = 15;
+    self.selectionIndicatorBoxLayer.masksToBounds = true;
     self.selectionIndicatorBoxOpacity = 0.2;
     
     self.contentMode = UIViewContentModeRedraw;
@@ -306,7 +307,7 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
     
     self.selectionIndicatorBoxLayer.backgroundColor = self.selectionIndicatorBoxColor.CGColor;
     self.selectionIndicatorBoxLayer.borderColor = self.selectionIndicatorBoxColor.CGColor;
-    self.selectionIndicatorBoxLayer.cornerRadius = 15.0f;
+    self.selectionIndicatorBoxLayer.cornerRadius = 15;
     // Remove all sublayers to avoid drawing images over existing ones
     self.scrollView.layer.sublayers = nil;
     
@@ -615,7 +616,7 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
                 
                 if (self.selectionStyle == HMSegmentedControlSelectionStyleBox && !self.selectionIndicatorBoxLayer.superlayer) {
                     self.selectionIndicatorBoxLayer.frame = [self frameForFillerSelectionIndicator];
-                    self.selectionIndicatorBoxLayer.cornerRadius = 15.0f;
+                    self.selectionIndicatorBoxLayer.cornerRadius = 15;
                     [self.scrollView.layer insertSublayer:self.selectionIndicatorBoxLayer atIndex:0];
                 }
             }
@@ -1016,7 +1017,7 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
                     [self.scrollView.layer addSublayer:self.selectionIndicatorStripLayer];
                     
                     if (self.selectionStyle == HMSegmentedControlSelectionStyleBox && [self.selectionIndicatorBoxLayer superlayer] == nil)
-                        self.selectionIndicatorBoxLayer.cornerRadius = 15.0f;
+                        self.selectionIndicatorBoxLayer.cornerRadius = 15;
                         [self.scrollView.layer insertSublayer:self.selectionIndicatorBoxLayer atIndex:0];
                     
                     [self setSelectedSegmentIndex:index animated:NO notify:YES];
