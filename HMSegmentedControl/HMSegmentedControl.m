@@ -177,9 +177,10 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
     self.selectionIndicatorBoxLayer.borderWidth = 1.0f;
     
     CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:10.0].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners: UIRectCornerAllCorners cornerRadii:(CGSize){15.0, 15.0}].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;
+    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners: UIRectCornerAllCorners cornerRadii:(CGSize){15.0, 15.0}].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;
+    maskLayer.masksToBounds = true;
     self.selectionIndicatorBoxLayer.mask = maskLayer;
-    
+    self.selectionIndicatorBoxLayer.masksToBounds = true;
     
     self.selectionIndicatorBoxOpacity = 0.2;
     
