@@ -635,6 +635,12 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
             }
         }
     }
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.masksToBounds = true;
+        self.selectionIndicatorBoxLayer.masksToBounds = true;
+    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners: UIRectCornerAllCorners cornerRadii:(CGSize){15.0, 15.0}].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;
+    
+    self.selectionIndicatorBoxLayer.mask = maskLayer;
 }
 
 - (void)removeTitleBackgroundLayers {
@@ -872,6 +878,10 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
         self.segmentWidthsArray = [mutableSegmentWidths copy];
     }
 
+    CAShapeLayer *maskLayer = [CAShapeLayer layer];
+    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners: UIRectCornerAllCorners cornerRadii:(CGSize){15.0, 15.0}].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;
+    
+    self.selectionIndicatorBoxLayer.mask = maskLayer;
     self.scrollView.scrollEnabled = self.isUserDraggable;
     self.scrollView.contentSize = CGSizeMake([self totalSegmentedControlWidth], self.frame.size.height);
 }
