@@ -629,7 +629,7 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
                     maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:15.0].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;
                     self.selectionIndicatorBoxLayer.masksToBounds = true;
                     [self.selectionIndicatorBoxLayer addSublayer:maskLayer];
-                    [self.selectionIndicatorBoxLayer setçNeedsLayout];
+                    [self.selectionIndicatorBoxLayer setNeedsLayout];
                     
                     [self.scrollView.layer insertSublayer:self.selectionIndicatorBoxLayer atIndex:0];
                     [self.selectionIndicatorBoxLayer setNeedsLayout];
