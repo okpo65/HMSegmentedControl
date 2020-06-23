@@ -178,9 +178,9 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
     CAShapeLayer *maskLayer = [CAShapeLayer layer];
     maskLayer.masksToBounds = true;
     self.selectionIndicatorBoxLayer.masksToBounds = true;
-    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners: UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners: UIRectCornerAllCorners cornerRadii:(CGSize){15.0, 15.0}].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;
+    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:15.0].CGPath;// [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners: UIRectCornerAllCorners cornerRadii:(CGSize){15.0, 15.0}].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners: UIRectCornerAllCorners cornerRadii:(CGSize){15.0, 15.0}].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;
     
-    self.selectionIndicatorBoxLayer.mask = maskLayer;
+    [self.selectionIndicatorBoxLayer addSublayer:maskLayer];
     [self.selectionIndicatorBoxLayer setNeedsLayout];
     [self.selectionIndicatorBoxLayer layoutIfNeeded];
     self.selectionIndicatorBoxOpacity = 0.2;
@@ -626,11 +626,11 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
                     CAShapeLayer *maskLayer = [CAShapeLayer layer];
                     maskLayer.masksToBounds = true;
                         self.selectionIndicatorBoxLayer.masksToBounds = true;
-                    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners: UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;
+                    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:15.0].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;
                     self.selectionIndicatorBoxLayer.masksToBounds = true;
-                    self.selectionIndicatorBoxLayer.mask = maskLayer;
-                    [self.selectionIndicatorBoxLayer setNeedsLayout];
-                    [self.selectionIndicatorBoxLayer layoutIfNeeded];
+                    [self.selectionIndicatorBoxLayer addSublayer:maskLayer];
+                    [self.selectionIndicatorBoxLayer setçNeedsLayout];
+                    
                     [self.scrollView.layer insertSublayer:self.selectionIndicatorBoxLayer atIndex:0];
                     [self.selectionIndicatorBoxLayer setNeedsLayout];
                 }
@@ -640,9 +640,9 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
     CAShapeLayer *maskLayer = [CAShapeLayer layer];
     maskLayer.masksToBounds = true;
     self.selectionIndicatorBoxLayer.masksToBounds = true;
-    maskLayer.path = maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners: UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;
+    maskLayer.path = maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:15.0].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;
     [self.selectionIndicatorBoxLayer layoutIfNeeded];
-    self.selectionIndicatorBoxLayer.mask = maskLayer;
+    [self.selectionIndicatorBoxLayer addSublayer:maskLayer];
 }
 
 - (void)removeTitleBackgroundLayers {
@@ -715,7 +715,7 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
     CAShapeLayer *maskLayer = [[CAShapeLayer alloc] init];
     maskLayer.frame = self.selectionIndicatorArrowLayer.bounds;
     maskLayer.path = arrowPath.CGPath;
-    self.selectionIndicatorArrowLayer.mask = maskLayer;
+    [self.selectionIndicatorBoxLayer addSublayer:maskLayer];
 }
 
 - (CGRect)frameForSelectionIndicator {
@@ -881,10 +881,10 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
     }
 
     CAShapeLayer *maskLayer = [CAShapeLayer layer];
-    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners: UIRectCornerTopLeft | UIRectCornerTopRight | UIRectCornerBottomLeft | UIRectCornerBottomRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;
+    maskLayer.path = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:15.0].CGPath;//[UIBezierPath bezierPathWithRoundedRect:self.bounds byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight cornerRadii:(CGSize){15.0, 15.0}].CGPath;
     maskLayer.masksToBounds = true;
     self.selectionIndicatorBoxLayer.masksToBounds = true;
-    self.selectionIndicatorBoxLayer.mask = maskLayer;
+    [self.selectionIndicatorBoxLayer addSublayer:maskLayer];
     
     
     self.scrollView.scrollEnabled = self.isUserDraggable;
@@ -1050,7 +1050,6 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
                         
                         [self.scrollView.layer insertSublayer:self.selectionIndicatorBoxLayer atIndex:0];
                         [self.selectionIndicatorBoxLayer setNeedsLayout];
-                    [self.selectionIndicatorBoxLayer layoutIfNeeded];
                     [self setSelectedSegmentIndex:index animated:NO notify:YES];
                     return;
                 }
